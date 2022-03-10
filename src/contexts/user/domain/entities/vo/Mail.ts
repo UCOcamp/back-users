@@ -16,6 +16,8 @@ class Mail {
 
     if (regex.test(value)) {
       this._value = value;
+    } else {
+      throw new Error('This mail is not valid.');
     }
   }
 }
