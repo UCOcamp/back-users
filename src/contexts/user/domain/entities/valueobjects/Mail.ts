@@ -14,11 +14,11 @@ class Mail {
       /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
     );
 
-    if (regex.test(value)) {
-      this._value = value;
-    } else {
+    if (regex.test(value) == false) {
       throw new Error('This mail is not valid.');
     }
+
+    this._value = value;
   }
 }
 

@@ -1,4 +1,3 @@
-import { Test } from '@nestjs/testing';
 import Mail from './Mail';
 
 describe('MailVO', () => {
@@ -11,7 +10,7 @@ describe('MailVO', () => {
 
   it('should return a instance of Error', () => {
     try {
-      new Mail('ThisShouldBeAnError')
+      new Mail('ThisShouldBeAnError');
     } catch (error) {
       expect(error).toBeInstanceOf(Error);
     }
