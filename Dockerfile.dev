@@ -1,0 +1,13 @@
+FROM node:16-alpine as ucocamp-users
+
+ADD package.json .
+
+ADD package-lock.json .
+
+RUN npm i
+
+ADD . .
+
+EXPOSE ${PORT}
+
+CMD npm run dev
