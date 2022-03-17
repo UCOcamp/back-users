@@ -10,11 +10,18 @@ class UserFactory implements EntityFactory<User> {
   create(
     name: string,
     surnames: string,
-    mail: Mail,
+    mail: string,
     passwd: string,
-    role: Role,
+    role: string,
   ) {
-    const user = new User(uuid(), name, surnames, mail, passwd, role);
+    const user = new User(
+      uuid(),
+      name,
+      surnames,
+      new Mail(mail),
+      passwd,
+      new Role(role),
+    );
     return user;
   }
 }
