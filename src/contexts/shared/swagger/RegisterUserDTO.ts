@@ -1,4 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
+import { Roles } from 'src/contexts/user/domain/entities/valueobjects/Role';
 
 class RegisterUserDTO {
   @ApiProperty({ type: String, description: "User's name" })
@@ -14,8 +15,8 @@ class RegisterUserDTO {
   passwd!: string;
 
   @ApiProperty({
-    type: String,
-    description: "User's role. VALID: CREATOR, STUDENT",
+    enum: Roles,
+    description: "User's role. Only Valid: CREATOR, STUDENT",
   })
   role!: string;
 }

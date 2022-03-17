@@ -5,7 +5,7 @@ export enum Roles {
 
 class Role {
   private _value: string;
-  private _roles = ['CREATOR', 'STUDENT'];
+  private _roles: string[] = Object.values(Roles);
 
   constructor(value: string) {
     this.create(value);

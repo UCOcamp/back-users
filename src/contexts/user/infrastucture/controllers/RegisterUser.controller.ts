@@ -11,12 +11,16 @@ import {
   ApiBadRequestResponse,
   ApiBody,
   ApiCreatedResponse,
+  ApiTags,
 } from '@nestjs/swagger';
 import { Response as res } from 'express';
 import RegisterUserDTO from 'src/contexts/shared/swagger/RegisterUserDTO';
 import RegisterUserCommand from '../../application/useCases/RegisterUser/commands/RegisterUser.command';
 import RegisterUserRequest from '../../application/useCases/RegisterUser/requests/RegisterUser.request';
+import Mail from '../../domain/entities/valueobjects/Mail';
+import Role from '../../domain/entities/valueobjects/Role';
 
+@ApiTags('users')
 @Controller('users')
 class RegisterUserController {
   constructor(private readonly commandBus: CommandBus) {}
@@ -49,6 +53,26 @@ class RegisterUserController {
       throw new BadRequestException(
         'Params missing (Name, Surnames, Mail, Passwd and Role needed)',
       );
+    }
+
+    try {
+      new Mail(mail);
+    } catch (error) {
+      if (error instanceof Error) {
+        throw new BadRequestException(
+          'Mail is not valid. Make sure it is correct.',
+        );
+      }
+    }
+
+    try {
+      new Role(role);
+    } catch (error) {
+      if (error instanceof Error) {
+        throw new BadRequestException(
+          'Role is not valid. VALIDS: CREATOR, STUDENT',
+        );
+      }
     }
 
     const request = new RegisterUserRequest(name, surnames, mail, passwd, role);
