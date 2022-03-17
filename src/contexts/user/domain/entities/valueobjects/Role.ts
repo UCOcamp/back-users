@@ -1,3 +1,8 @@
+export enum Roles {
+  Creator = 'CREATOR',
+  Student = 'STUDENT',
+}
+
 class Role {
   private _value: string;
   private _roles = ['CREATOR', 'STUDENT'];

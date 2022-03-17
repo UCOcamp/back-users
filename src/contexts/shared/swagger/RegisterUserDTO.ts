@@ -1,19 +1,22 @@
 import { ApiProperty } from '@nestjs/swagger';
 
 class RegisterUserDTO {
-  @ApiProperty({ type: 'String', description: "User's name" })
-  title!: string;
+  @ApiProperty({ type: String, description: "User's name" })
+  name!: string;
 
-  @ApiProperty({ type: 'String', description: "User's surnames" })
+  @ApiProperty({ type: String, description: "User's surnames" })
   surnames!: string;
 
-  @ApiProperty({ type: 'String', description: "User's mail" })
+  @ApiProperty({ type: String, description: "User's mail" })
   mail!: string;
 
-  @ApiProperty({ type: 'String', description: "User's passwd" })
+  @ApiProperty({ type: String, description: "User's passwd" })
   passwd!: string;
 
-  @ApiProperty({ type: 'String', description: "User's role" })
+  @ApiProperty({
+    type: String,
+    description: "User's role. VALID: CREATOR, STUDENT",
+  })
   role!: string;
 }
 

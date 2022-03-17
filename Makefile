@@ -1,4 +1,4 @@
-.PHONY: build dev sdev
+.PHONY: build rebuild dev sdev
 
 SHELL=/bin/zsh
 include .env
@@ -6,6 +6,12 @@ export
 
 build:
 		@docker-compose build
+		@echo -e "\n"
+		@echo -e "User's microservice was built. Use make dev to start programming"
+
+rebuild:
+		@docker-compose down
+		@docker-compose up -d --build
 		@echo -e "\n"
 		@echo -e "User's microservice was built. Use make dev to start programming"
 

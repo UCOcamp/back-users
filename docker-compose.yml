@@ -10,7 +10,7 @@ services:
     ports:
       - ${PORT}:${PORT}
     volumes:
-      - .:/usr/src/app
+      - .:$PWD
     depends_on:
       - mongo
 

@@ -5,10 +5,15 @@ import {
   HttpStatus,
   Post,
   Response,
-  UseInterceptors,
 } from '@nestjs/common';
 import { CommandBus } from '@nestjs/cqrs';
+import {
+  ApiBadRequestResponse,
+  ApiBody,
+  ApiCreatedResponse,
+} from '@nestjs/swagger';
 import { Response as res } from 'express';
+import RegisterUserDTO from 'src/contexts/shared/swagger/RegisterUserDTO';
 import RegisterUserCommand from '../../application/useCases/RegisterUser/commands/RegisterUser.command';
 import RegisterUserRequest from '../../application/useCases/RegisterUser/requests/RegisterUser.request';
 
@@ -16,6 +21,17 @@ import RegisterUserRequest from '../../application/useCases/RegisterUser/request
 class RegisterUserController {
   constructor(private readonly commandBus: CommandBus) {}
   @Post('/register')
+  @ApiBody({
+    type: RegisterUserDTO,
+  })
+  @ApiCreatedResponse({
+    status: 201,
+    description: 'User was registered',
+  })
+  @ApiBadRequestResponse({
+    status: 400,
+    description: 'All params are needed',
+  })
   public async registerUser(
     @Body()
     params: {
@@ -44,3 +60,5 @@ class RegisterUserController {
       .send({ message: 'User was Registeres Succesfully' });
   }
 }
+
+export default RegisterUserController;
