@@ -81,7 +81,7 @@ class RegisterUserController {
     );
     response
       .status(HttpStatus.CREATED)
-      .send({ message: 'User was Registeres Succesfully' });
+      .send({ message: 'User was Registered Succesfully' });
   }
 }
 
