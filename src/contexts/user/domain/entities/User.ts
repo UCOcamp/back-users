@@ -71,6 +71,17 @@ class User extends AggregateRoot {
   set role(role: Role) {
     this._role = role;
   }
+
+  get json() {
+    return {
+      id: this.id,
+      name: this.name,
+      surnames: this.surnames,
+      mail: this.mail.value,
+      passwd: this.passwd,
+      role: this.role.value,
+    };
+  }
 }
 
 export default User;
