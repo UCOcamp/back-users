@@ -3,12 +3,13 @@ import { AggregateRoot } from '@nestjs/cqrs';
 import Mail from './valueobjects/Mail';
 import Name from './valueobjects/Name';
 import Role from './valueobjects/Role';
+import Surnames from './valueobjects/Surnames';
 import UserId from './valueobjects/UserId';
 
 class User extends AggregateRoot {
   private readonly _id: UserId;
   private _name: Name;
-  private _surnames: string;
+  private _surnames: Surnames;
   private _mail: Mail;
   private _passwd: string;
   private _role: Role;
@@ -16,7 +17,7 @@ class User extends AggregateRoot {
   constructor(
     id: UserId,
     name: Name,
-    surnames: string,
+    surnames: Surnames,
     mail: Mail,
     passwd: string,
     role: Role,
@@ -43,11 +44,11 @@ class User extends AggregateRoot {
   }
 
   get surnames() {
-    return this._surnames;
+    return this._surnames.value;
   }
 
   set surnames(surnames: string) {
-    this._surnames = surnames;
+    this._surnames = Surnames.fromString(surnames);
   }
 
   get mail() {

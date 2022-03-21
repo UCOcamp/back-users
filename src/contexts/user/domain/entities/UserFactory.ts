@@ -6,6 +6,7 @@ import Role from './valueobjects/Role';
 import Mail from './valueobjects/Mail';
 import Name from './valueobjects/Name';
 import UserId from './valueobjects/UserId';
+import Surnames from './valueobjects/Surnames';
 
 @Injectable()
 class UserFactory implements EntityFactory<User> {
@@ -19,7 +20,7 @@ class UserFactory implements EntityFactory<User> {
     const user = new User(
       UserId.fromString(uuid()),
       Name.fromString(name),
-      surnames,
+      Surnames.fromString(surnames),
       Mail.fromString(mail),
       passwd,
       new Role(role),
