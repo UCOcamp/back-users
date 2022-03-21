@@ -1,4 +1,4 @@
-import Name from './Name';
+import Name from '../../src/contexts/user/domain/entities/valueobjects/Name';
 
 describe('NameVO', () => {
   let name: Name;

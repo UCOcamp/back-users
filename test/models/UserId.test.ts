@@ -1,4 +1,5 @@
-import UserId from './UserId';
+import UserId from '../../src/contexts/user/domain/entities/valueobjects/UserId';
+
 import { v4 as uuid } from 'uuid';
 
 describe('UserId VO', () => {

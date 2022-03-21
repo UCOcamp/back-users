@@ -1,4 +1,4 @@
-import Mail from './Mail';
+import Mail from '../../src/contexts/user/domain/entities/valueobjects/Mail';
 
 describe('MailVO', () => {
   let mail: Mail;

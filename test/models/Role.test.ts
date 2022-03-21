@@ -1,4 +1,4 @@
-import Role from './Role';
+import Role from '../../src/contexts/user/domain/entities/valueobjects/Role';
 
 describe('RoleVO', () => {
   let role: Role;
