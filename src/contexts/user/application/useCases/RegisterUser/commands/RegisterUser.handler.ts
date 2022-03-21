@@ -19,7 +19,7 @@ class RegisterUserHandler implements ICommandHandler<RegisterUserCommand> {
     );
 
     await this.UserRepository.saveOne(user);
-    user.apply(new UserWasRegisteredEvent(user.id));
+    user.apply(new UserWasRegisteredEvent(user.id.value));
     user.commit();
   }
 }
