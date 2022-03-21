@@ -31,8 +31,8 @@ class User extends AggregateRoot {
     this._role = role;
   }
 
-  get id() {
-    return this._id;
+  get id(): string {
+    return this._id.value;
   }
 
   get name() {
