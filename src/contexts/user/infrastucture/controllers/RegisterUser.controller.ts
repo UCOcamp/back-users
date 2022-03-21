@@ -56,7 +56,7 @@ class RegisterUserController {
     }
 
     try {
-      new Mail(mail);
+      Mail.fromString(mail);
     } catch (error) {
       if (error instanceof Error) {
         throw new BadRequestException(
