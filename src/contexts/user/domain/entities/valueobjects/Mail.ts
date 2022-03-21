@@ -1,15 +1,15 @@
-class Mail {
-  private _value: string;
+import { ValueObject } from '@aulasoftwarelibre/nestjs-eventstore';
 
-  constructor(value: string) {
-    this.create(value);
-  }
+interface Props {
+  value: string;
+}
 
-  get value() {
-    return this._value;
-  }
+class Mail extends ValueObject<Props> {
+  public static fromString(value: string): Mail {
+    if (value.length === 0) {
+      throw new Error('Mail cannot be empty');
+    }
 
-  private create(value: string) {
     const regex = new RegExp(
       /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
     );
@@ -18,7 +18,11 @@ class Mail {
       throw new Error('This mail is not valid.');
     }
 
-    this._value = value;
+    return new Mail({ value });
+  }
+
+  get value() {
+    return this.props.value;
   }
 }
 

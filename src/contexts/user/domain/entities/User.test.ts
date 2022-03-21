@@ -6,7 +6,7 @@ import Role from './valueobjects/Role';
 
 describe('UserEntity', () => {
   let user: User;
-  const mail = new Mail('test@test.com');
+  const mail = Mail.fromString('test@test.com');
   const role = new Role('STUDENT');
   const id = uuid();
 
@@ -40,7 +40,7 @@ describe('UserEntity', () => {
   it('should change mail', () => {
     user = new User(id, 'Marc', 'Test', mail, 'passwd', role);
 
-    user.mail = new Mail('anewmail@gmail.com');
+    user.mail = Mail.fromString('anewmail@gmail.com');
 
     expect(user.mail.value).toBe('anewmail@gmail.com');
   });

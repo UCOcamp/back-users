@@ -4,13 +4,21 @@ describe('MailVO', () => {
   let mail: Mail;
 
   it('should return a valid Mail', () => {
-    mail = new Mail('test@test.com');
+    mail = Mail.fromString('test@test.com');
     expect(mail.value).toBe('test@test.com');
   });
 
-  it('should return a instance of Error', () => {
+  it('should return an instance of Error, Mail cannot be null', () => {
     try {
-      new Mail('ThisShouldBeAnError');
+      Mail.fromString('');
+    } catch (error) {
+      expect(error).toBeInstanceOf(Error);
+    }
+  });
+
+  it('should return an instance of Error', () => {
+    try {
+      Mail.fromString('adwadawdad@adawdada');
     } catch (error) {
       expect(error).toBeInstanceOf(Error);
     }

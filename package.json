@@ -21,6 +21,8 @@
     "test:e2e": "jest --config ./test/jest-e2e.json"
   },
   "dependencies": {
+    "@akanass/nestjsx-crypto": "^3.0.0",
+    "@aulasoftwarelibre/nestjs-eventstore": "^0.4.0",
     "@nestjs/common": "^8.0.0",
     "@nestjs/core": "^8.0.0",
     "@nestjs/cqrs": "^8.0.3",
@@ -48,6 +50,7 @@
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^4.0.0",
     "jest": "^27.2.5",
+    "nestjs-console": "^7.0.1",
     "prettier": "^2.3.2",
     "source-map-support": "^0.5.20",
     "supertest": "^6.1.3",
