@@ -2,16 +2,19 @@ import { v4 as uuid } from 'uuid';
 
 import User from './User';
 import Mail from './valueobjects/Mail';
+import Name from './valueobjects/Name';
 import Role from './valueobjects/Role';
+import UserId from './valueobjects/UserId';
 
 describe('UserEntity', () => {
   let user: User;
+  const name = Name.fromString('Marc');
   const mail = Mail.fromString('test@test.com');
   const role = new Role('STUDENT');
-  const id = uuid();
+  const id = UserId.fromString(uuid());
 
   it('should return all variables', () => {
-    user = new User(id, 'Marc', 'Test', mail, 'passwd', role);
+    user = new User(id, name, 'Test', mail, 'passwd', role);
 
     expect(user.id).toBe(id);
     expect(user.name).toBe('Marc');
@@ -22,7 +25,7 @@ describe('UserEntity', () => {
   });
 
   it('should change name', () => {
-    user = new User(id, 'Marc', 'Test', mail, 'passwd', role);
+    user = new User(id, name, 'Test', mail, 'passwd', role);
 
     user.name = 'Alex';
 
@@ -30,7 +33,7 @@ describe('UserEntity', () => {
   });
 
   it('should change surnames', () => {
-    user = new User(id, 'Marc', 'Test', mail, 'passwd', role);
+    user = new User(id, name, 'Test', mail, 'passwd', role);
 
     user.surnames = 'Test Test';
 
@@ -38,7 +41,7 @@ describe('UserEntity', () => {
   });
 
   it('should change mail', () => {
-    user = new User(id, 'Marc', 'Test', mail, 'passwd', role);
+    user = new User(id, name, 'Test', mail, 'passwd', role);
 
     user.mail = Mail.fromString('anewmail@gmail.com');
 
@@ -46,7 +49,7 @@ describe('UserEntity', () => {
   });
 
   it('should change role', () => {
-    user = new User(id, 'Marc', 'Test', mail, 'passwd', role);
+    user = new User(id, name, 'Test', mail, 'passwd', role);
 
     user.role = new Role('CREATOR');
 
@@ -54,7 +57,7 @@ describe('UserEntity', () => {
   });
 
   it('should change passwd', () => {
-    user = new User(id, 'Marc', 'Test', mail, 'passwd', role);
+    user = new User(id, name, 'Test', mail, 'passwd', role);
 
     user.passwd = 'newPasswd';
 
