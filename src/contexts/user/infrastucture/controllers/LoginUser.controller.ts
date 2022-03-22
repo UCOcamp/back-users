@@ -9,6 +9,7 @@ import { QueryBus } from '@nestjs/cqrs';
 import {
   ApiBadRequestResponse,
   ApiForbiddenResponse,
+  ApiOkResponse,
   ApiTags,
 } from '@nestjs/swagger';
 import { Nullable } from 'src/contexts/shared/domain/Nullable';
@@ -30,6 +31,10 @@ class LoginUserController {
   @ApiForbiddenResponse({
     status: 403,
     description: 'Passwd was not valid',
+  })
+  @ApiOkResponse({
+    status: 200,
+    description: 'User had logged in',
   })
   async loginUser(
     @Param('mail') mail: string,

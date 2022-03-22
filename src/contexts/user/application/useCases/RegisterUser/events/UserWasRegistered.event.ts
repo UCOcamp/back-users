@@ -2,7 +2,7 @@ class UserWasRegisteredEvent {
   constructor(private readonly _id: string) {}
 
   get id() {
-    return this;
+    return this._id;
   }
 }
 

@@ -10,10 +10,10 @@ build:
 		@echo -e "User's microservice was built. Use make dev to start programming"
 
 rebuild:
-		@docker-compose down
-		@docker-compose up -d --build
+		@docker-compose down api
+		@docker-compose up -d --build api
 		@echo -e "\n"
-		@echo -e "User's microservice was built. Use make dev to start programming"
+		@echo -e "\e[1;42m[DEV]\e[0m User's microservice is UP. localhost:${PORT}"
 
 dev:
 		@docker-compose up -d
