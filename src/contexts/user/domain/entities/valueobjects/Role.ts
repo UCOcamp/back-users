@@ -16,7 +16,7 @@ class Role {
   }
 
   private create(value: string) {
-    if (this._roles.includes(value) == false) {
+    if (this._roles.includes(value) === false) {
       throw new Error('This role is not valid.');
     }
 

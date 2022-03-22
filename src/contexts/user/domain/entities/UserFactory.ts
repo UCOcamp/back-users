@@ -4,6 +4,9 @@ import { v4 as uuid } from 'uuid';
 import EntityFactory from '../../../shared/domain/EntityFactory';
 import Role from './valueobjects/Role';
 import Mail from './valueobjects/Mail';
+import Name from './valueobjects/Name';
+import UserId from './valueobjects/UserId';
+import Surnames from './valueobjects/Surnames';
 
 @Injectable()
 class UserFactory implements EntityFactory<User> {
@@ -15,10 +18,10 @@ class UserFactory implements EntityFactory<User> {
     role: string,
   ) {
     const user = new User(
-      uuid(),
-      name,
-      surnames,
-      new Mail(mail),
+      UserId.fromString(uuid()),
+      Name.fromString(name),
+      Surnames.fromString(surnames),
+      Mail.fromString(mail),
       passwd,
       new Role(role),
     );
