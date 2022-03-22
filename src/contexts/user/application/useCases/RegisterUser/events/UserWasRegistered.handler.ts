@@ -6,7 +6,7 @@ class UserWasRegisteredHandler
   implements IEventHandler<UserWasRegisteredEvent>
 {
   async handle({ id }: UserWasRegisteredEvent): Promise<void> {
-    console.log(`User was registered. EventID: ${id.id}`);
+    console.log(`User was registered. EventID: ${id}`);
   }
 }
 
