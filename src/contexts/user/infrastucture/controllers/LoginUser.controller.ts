@@ -12,7 +12,6 @@ import {
   ApiOkResponse,
   ApiTags,
 } from '@nestjs/swagger';
-import { Nullable } from 'src/contexts/shared/domain/Nullable';
 import LoginUserQuery from '../../application/useCases/loginUser/queries/loginUser.query';
 import LoginUserRequest from '../../application/useCases/loginUser/request/loginUser.request';
 import loginUserResponse from '../../application/useCases/loginUser/responses/loginUser.response';
