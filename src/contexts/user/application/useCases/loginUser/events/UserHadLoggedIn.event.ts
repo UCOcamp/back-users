@@ -1,4 +1,4 @@
-class UserWasRegisteredEvent {
+class UserHadLoggedInEvent {
   constructor(private readonly _id: string) {}
 
   get id() {
@@ -6,4 +6,4 @@ class UserWasRegisteredEvent {
   }
 }
 
-export default UserWasRegisteredEvent;
+export default UserHadLoggedInEvent;

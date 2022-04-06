@@ -1,6 +1,7 @@
 import {
   BadRequestException,
   Body,
+  ConflictException,
   Controller,
   HttpStatus,
   Post,
@@ -10,6 +11,7 @@ import { CommandBus } from '@nestjs/cqrs';
 import {
   ApiBadRequestResponse,
   ApiBody,
+  ApiConflictResponse,
   ApiCreatedResponse,
   ApiTags,
 } from '@nestjs/swagger';
@@ -35,6 +37,10 @@ class RegisterUserController {
   @ApiBadRequestResponse({
     status: 400,
     description: 'All params are needed',
+  })
+  @ApiConflictResponse({
+    status: 409,
+    description: 'This mail is already taken',
   })
   public async registerUser(
     @Body()
@@ -76,12 +82,16 @@ class RegisterUserController {
     }
 
     const request = new RegisterUserRequest(name, surnames, mail, passwd, role);
-    await this.commandBus.execute<RegisterUserCommand, void>(
-      new RegisterUserCommand(request),
-    );
-    response
-      .status(HttpStatus.CREATED)
-      .send({ message: 'User was Registered Succesfully' });
+    try {
+      await this.commandBus.execute<RegisterUserCommand, void>(
+        new RegisterUserCommand(request),
+      );
+      response
+        .status(HttpStatus.CREATED)
+        .send({ message: 'User was Registered Succesfully' });
+    } catch (error) {
+      throw new ConflictException('This mail is already taken.');
+    }
   }
 }
 

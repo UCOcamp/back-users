@@ -3,6 +3,7 @@ import RegisterUserCommand from './RegisterUser.command';
 import UserFactory from 'src/contexts/user/domain/entities/UserFactory';
 import MongoUserEntityRepository from 'src/contexts/user/infrastucture/persistance/mongo/repositories/UserEntityRepository';
 import UserWasRegisteredEvent from '../events/UserWasRegistered.event';
+import { ConflictException } from '@nestjs/common';
 
 @CommandHandler(RegisterUserCommand)
 class RegisterUserHandler implements ICommandHandler<RegisterUserCommand> {
@@ -14,6 +15,11 @@ class RegisterUserHandler implements ICommandHandler<RegisterUserCommand> {
 
   async execute(command: RegisterUserCommand): Promise<void> {
     const { name, surnames, mail, passwd, role } = command.registerUserRequest;
+
+    if (await this.UserRepository.getOneByMail(mail)) {
+      throw new ConflictException('This mail is already taken');
+    }
+
     const user = this.eventPublisher.mergeObjectContext(
       this.userFactory.create(name, surnames, mail, passwd, role),
     );

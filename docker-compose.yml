@@ -17,5 +17,18 @@ services:
   mongo:
     container_name: ucocamp-user-database
     image: mongo
+    volumes:
+      - db_data:/data/db
     ports:
       - 27017:27017
+
+  mongo-express:
+      container_name: ucocamp-user-dbadmin
+      image: mongo-express
+      ports:
+        - 8081:8081
+      depends_on:
+        - mongo
+
+volumes:
+    db_data:

@@ -4,6 +4,7 @@ import { MongooseModule, SchemaFactory } from '@nestjs/mongoose';
 import {
   UserCommandHandlers,
   UserEventHandlers,
+  UserQueryHandlers,
 } from '../../application/useCases/_index';
 import UserFactory from '../../domain/entities/UserFactory';
 import UserControllers from '../controllers/_index';
@@ -28,6 +29,7 @@ import UserSchemaFactory from '../persistance/mongo/schemas/User.schemaFactory';
     UserSchemaFactory,
     ...UserEventHandlers,
     ...UserCommandHandlers,
+    ...UserQueryHandlers,
   ],
 })
 class UserModule {}

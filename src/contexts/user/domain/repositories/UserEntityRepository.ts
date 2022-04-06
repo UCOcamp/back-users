@@ -1,7 +1,8 @@
+import { Nullable } from '../../../shared/domain/Nullable';
 import User from '../entities/User';
 
 interface UserEntityRepository {
-  getOne(id: string): Promise<User>;
+  getOneByMail(mail: string): Promise<Nullable<User>>;
   getAll(): Promise<User[]>;
   saveOne(user: User): Promise<void>;
   updateOne(user: User): Promise<void>;
